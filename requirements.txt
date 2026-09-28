@@ -1,0 +1,29 @@
+# ==============================================================================
+# APIx: Real-Time Airfare Price Index for India
+# Production Dependencies Specification (MoSPI Problem Statement ID 26056)
+# ==============================================================================
+
+# Core ASGI Web Framework & API Server
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.10.0
+python-multipart>=0.0.9
+
+# Relational Database ORM & Storage Layer
+SQLAlchemy>=2.0.30
+
+# Econometric & Statistical Computing (Jevons, Tornqvist, Laspeyres, RYGEKS)
+numpy>=1.26.0
+scipy>=1.14.0
+
+# Resilient HTTP Client & Web Scraping Safeguards
+requests>=2.32.0
+urllib3>=2.2.0
+
+# High-Frequency Automated Job Scheduling
+APScheduler>=3.10.0
+
+# Testing, Verification & Integration
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+httpx>=0.27.0

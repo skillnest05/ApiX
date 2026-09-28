@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "description": "Advance-purchase booking distribution weights for APIx index calculation across 5 lead-time windows",
+    "source": "DGCA passenger booking lead-time empirical distribution and airline yield management curve",
+    "windows_count": 5,
+    "weights_sum": 1.0
+  },
+  "distribution": {
+    "T+1": 0.05,
+    "T+7": 0.20,
+    "T+15": 0.30,
+    "T+30": 0.30,
+    "T+45": 0.15
+  },
+  "days_distribution": {
+    "1": 0.05,
+    "7": 0.20,
+    "15": 0.30,
+    "30": 0.30,
+    "45": 0.15
+  },
+  "windows": [
+    {
+      "window_id": "T+1",
+      "advance_days": 1,
+      "booking_share_weight": 0.05,
+      "consumer_archetype": "Emergency, bereavement, urgent business",
+      "pricing_characteristics": "Farthest up the yield curve; lowest seat availability; highest fares",
+      "yield_multiplier": 2.85
+    },
+    {
+      "window_id": "T+7",
+      "advance_days": 7,
+      "booking_share_weight": 0.20,
+      "consumer_archetype": "Short-notice corporate / personal trips",
+      "pricing_characteristics": "Mid-to-high fare buckets exposed; volatile week-on-week",
+      "yield_multiplier": 1.85
+    },
+    {
+      "window_id": "T+15",
+      "advance_days": 15,
+      "booking_share_weight": 0.30,
+      "consumer_archetype": "Standard planned domestic travel",
+      "pricing_characteristics": "Peak booking mass; standard saver fares",
+      "yield_multiplier": 1.35
+    },
+    {
+      "window_id": "T+30",
+      "advance_days": 30,
+      "booking_share_weight": 0.30,
+      "consumer_archetype": "Vacationers, visiting friends/relatives (VFR)",
+      "pricing_characteristics": "Lower bucket availability (O, Q, G); stable prices",
+      "yield_multiplier": 1.08
+    },
+    {
+      "window_id": "T+45",
+      "advance_days": 45,
+      "booking_share_weight": 0.15,
+      "consumer_archetype": "Early-bird leisure, holiday planners",
+      "pricing_characteristics": "Deep discount baseline; ceiling on early sales",
+      "yield_multiplier": 1.00
+    }
+  ]
+}

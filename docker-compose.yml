@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  apix-platform:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: apix_platform_api
+    restart: unless-stopped
+    ports:
+      - "${APIX_PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      - APIX_ENV=production
+      - APIX_HOST=0.0.0.0
+      - APIX_PORT=8000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "2.00"
+          memory: 2048M
+        reservations:
+          cpus: "0.50"
+          memory: 512M
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    tmpfs:
+      - /tmp
