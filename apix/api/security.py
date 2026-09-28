@@ -45,12 +45,13 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
                 "accelerometer=(), camera=(), geolocation=(), gyroscope=(), "
                 "magnetometer=(), microphone=(), payment=(), usb=()"
             )
-            # Content Security Policy (allows self, CDNs for dashboard charts, and fonts)
+            # Content Security Policy (allows self, CDNs for dashboard Tailwind, charts, FontAwesome, and fonts)
             headers["Content-Security-Policy"] = (
                 "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; "
-                "font-src 'self' https://fonts.gstatic.com data:; "
-                "style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; "
-                "script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; "
+                "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; "
+                "style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; "
+                "script-src 'self' https://cdn.jsdelivr.net https://cdn.tailwindcss.com 'unsafe-inline' 'unsafe-eval'; "
+                "connect-src 'self' https: data:; "
                 "img-src 'self' https: data:;"
             )
             # HSTS enabled for production or HTTPS connections

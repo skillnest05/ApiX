@@ -93,7 +93,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
     allow_credentials=allow_creds,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["GET", "POST", "OPTIONS", "HEAD"],
     allow_headers=["*"],
 )
 
@@ -103,10 +103,11 @@ anomaly_detector = AnomalyDetector()
 
 
 # ==============================================================================
-# 1. ROOT WEB DASHBOARD
+# 1. ROOT WEB DASHBOARD & HEALTH PROBES
 # ==============================================================================
 
 @app.get("/", response_class=HTMLResponse)
+@app.head("/", response_class=HTMLResponse, include_in_schema=False)
 def get_dashboard_root() -> HTMLResponse:
     """Serves the interactive APIx Web Dashboard."""
     template_path = os.path.join(
@@ -123,9 +124,17 @@ def get_dashboard_root() -> HTMLResponse:
 
 @app.get("/health")
 @app.get("/api/v1/health")
+@app.head("/health", include_in_schema=False)
+@app.head("/api/v1/health", include_in_schema=False)
 def get_health() -> Dict[str, Any]:
     """Health check endpoint for container orchestrators and monitoring probes."""
     return {"status": "healthy", "service": "APIx Institutional API", "version": "1.0.0"}
+
+
+@app.api_route("/favicon.ico", methods=["GET", "HEAD"], include_in_schema=False)
+def get_favicon() -> Response:
+    """Returns empty 204 No Content for browser favicon requests."""
+    return Response(status_code=204)
 
 
 # ==============================================================================
