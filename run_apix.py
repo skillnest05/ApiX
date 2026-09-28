@@ -81,8 +81,8 @@ def start_server(host: str = "127.0.0.1", port: int = 8000) -> None:
 
 
 def main() -> None:
-    default_host = os.getenv("APIX_HOST", "127.0.0.1")
-    default_port = int(os.getenv("APIX_PORT", "8000"))
+    default_host = os.getenv("APIX_HOST", "0.0.0.0")
+    default_port = int(os.getenv("PORT") or os.getenv("APIX_PORT", "8000"))
 
     parser = argparse.ArgumentParser(description="APIx Platform Turnkey Runner")
     parser.add_argument("--seed", action="store_true", help="Seed database with fare quotes")

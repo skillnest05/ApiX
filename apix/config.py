@@ -17,7 +17,7 @@ class Settings:
 
     # Server Binding
     HOST: str = os.getenv("APIX_HOST", "0.0.0.0")
-    PORT: int = int(os.getenv("APIX_PORT", "8000"))
+    PORT: int = int(os.getenv("PORT") or os.getenv("APIX_PORT", "8000"))
 
     # Database Connection
     DATABASE_URL: str = (
